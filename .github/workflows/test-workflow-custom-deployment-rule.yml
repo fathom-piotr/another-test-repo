@@ -1,0 +1,23 @@
+# This workflow is here to be able to test the custom deployment rule for triggering smoke DAG tests.
+# Once https://app.asana.com/0/0/1206682594146545/f is done, it's likely possible to remove it.
+
+on:
+    workflow_dispatch:
+
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Hello from job 1!"
+
+    job2:
+        runs-on: ubuntu-latest
+        needs: [job1]
+        steps:
+            - run: echo "Hello from job 2!"
+
+    job3:
+        runs-on: ubuntu-latest
+        needs: [job2]
+        steps:
+            - run: echo "Hello from job 3!"
